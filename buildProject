@@ -1,0 +1,8 @@
+#!/bin/bash
+echo "Setting p8.16  with pull-up resistor enabled for switch and p9.12 for an ac device (LED)"
+config-pin p8.16 gpio_pu
+config-pin p9.12 gpio
+g++ publish.cpp myGPIO.cpp AnalogIn.cpp -o publish -lpaho-mqtt3c
+g++ subscribe.cpp LED.cpp myGPIO.cpp -o subscribe -lpaho-mqtt3c
+echo "Project built successfully. Example invocations: ./publish ./subscribe python3 createTempDataDoc.py feedName.csv"
+
